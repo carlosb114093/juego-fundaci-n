@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "zona": "ansiedad",
+    "tipo": "texto",
+    "pregunta": "Mañana tienes que presentar un proyecto frente a toda tu clase.",
+    "opciones": ["alegría", "tristeza", "enojo", "ansiedad", "calma"],
+    "respuestaCorrecta": "ansiedad",
+    "feedback": "¡Es normal sentir nervios! A eso le llamamos ansiedad...",
+    "minijuego": "respira" 
+  },
+  {
+    "id": 2,
+    "zona": "enojo",
+    "tipo": "imagen",
+    "pregunta": "imagenes/juguete-roto.png",
+    "opciones": ["alegría", "tristeza", "enojo", "ansiedad", "calma"],
+    "respuestaCorrecta": "enojo",
+    "feedback": "¡Uf, qué frustrante! Eso es enojo...",
+    "minijuego": null
+  },
+  {
+    "id": 3,
+    "zona": "calma",
+    "tipo": "sonido",
+    "pregunta": "sonidos/lluvia-suave.mp3",
+    "opciones": ["alegría", "tristeza", "enojo", "ansiedad", "calma"],
+    "respuestaCorrecta": "calma",
+    "feedback": "¡Qué bien se siente! Esa es la calma. Es como un lago tranquilo...",
+    "minijuego": null
+  }
+]

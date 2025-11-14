@@ -1,0 +1,5 @@
+para poder correr este proyecto primero tienes que ejecutar este comando en la terminal npx tailwindcss -i ./css/input.css -o ./css/output.css --watch
+
+https://www.photopea.com/ aca te dejo esta herramienta que me ha servido un resto puedes usar la varita mágica para recortar la imagen del mapa completo 
+y solo dejar las partes de las islas que vas a trabajar, puedes tomar una guía lo que hice para hacerlo similar ten presente que en el drive que te compartí
+están las imágenes de los otros personajes, para que porfa antes de usarlos uses la misma varita mágica para dejarlos con fondo transparente.
