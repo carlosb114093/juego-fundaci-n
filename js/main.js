@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const mapaZonaTristeza = document.getElementById('mapa-zona-tristeza');
     const hotspotTristeza = document.getElementById('hotspot-tristeza');
     const btnVerMapaColor = document.getElementById('btn-ver-mapa-color');
+    const mapaZonaAlegria = document.getElementById('mapa-zona-alegria');
+    const hotspotAlegria = document.getElementById('hotspot-alegria')
 
     // Función para mostrar una pantalla y ocultar las demás
     function mostrarPantalla(nombrePantalla) {
@@ -29,8 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- ESTADO DEL DEMO ---
     let zonaTristezaDesbloqueada = false;
+    let zonaAlegriaDesbloqueada = false;
+    let emocionActual = "";
 
     // --- EVENT LISTENERS DE NAVEGACIÓN ---
 
@@ -44,12 +47,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Hotspot de Tristeza -> Escenario
     hotspotTristeza?.addEventListener('click', () => {
-        if (!zonaTristezaDesbloqueada) {
-            console.log("Clic en la zona de Tristeza.");
-            // Aquí podríamos cargar contenido específico para la emoción si tuviéramos data.js
+    if (!zonaTristezaDesbloqueada) {
+        console.log("Clic en la zona de Tristeza.");
+        emocionActual = "tristeza"; // <-- AÑADE ESTA LÍNEA
+
+        // --- Asegúrate de que el contenido de tristeza se cargue ---
+        document.getElementById('guardian-img').src = 'assets/images/guardian_tristeza.png';
+        document.getElementById('guardian-nombre').textContent = 'Lila la Oyente';
+        document.querySelector('#escenario-estimulo img').src = 'assets/images/situación_tristeza_ejemplo.png';
+        document.querySelector('#escenario-estimulo p').textContent = 'Tu mejor amigo se muda a otra ciudad.';
+        document.getElementById('escenario-pregunta').textContent = '¿Cómo te sientes en esta situación?';
+
+        mostrarPantalla('escenario');
+    } else {
+        alert("¡Ya has explorado la Isla de la Tristeza!");
+    }
+    });
+    
+    hotspotAlegria?.addEventListener('click', () => {
+        if (!zonaAlegriaDesbloqueada) {
+            console.log("Clic en la zona de Alegría.");
+            emocionActual = "alegria"; // <-- Le decimos al juego qué emoción estamos viendo
+
+            // --- ¡IMPORTANTE! Cambiamos el contenido del escenario ---
+            document.getElementById('guardian-img').src = 'assets/images/guardian_alegria.png';
+            document.getElementById('guardian-nombre').textContent = 'Félix el Guía';
+            document.querySelector('#escenario-estimulo img').src = 'assets/images/situación_alegria_ejemplo.png';
+            document.querySelector('#escenario-estimulo p').textContent = '¡Es tu fiesta de cumpleaños sorpresa!';
+            document.getElementById('escenario-pregunta').textContent = '¿Cómo te sientes en esta situación?';
+
             mostrarPantalla('escenario');
         } else {
-            alert("¡Ya has explorado la Isla de la Tristeza!");
+            alert("¡Ya has explorado la Isla de la Alegría!");
         }
     });
 
@@ -63,13 +92,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Feedback -> Mapa (desbloquea la tristeza)
     document.getElementById('btn-continuar')?.addEventListener('click', () => {
-        console.log("Volviendo al mapa, la tristeza está desbloqueada.");
-        zonaTristezaDesbloqueada = true; // Marca la zona como desbloqueada
+    console.log(`Volviendo al mapa. Emoción actual: ${emocionActual}`);
 
-        // Ahora, superponemos la isla de tristeza a color
+    // ▼▼▼ LÓGICA MEJORADA ▼▼▼
+    if (emocionActual === "tristeza") {
+        zonaTristezaDesbloqueada = true;
         mapaZonaTristeza.classList.remove('hidden'); 
-        
-        mostrarPantalla('mapa');
+
+    } else if (emocionActual === "alegria") {
+        zonaAlegriaDesbloqueada = true;
+        mapaZonaAlegria.classList.remove('hidden');
+    }
+    // (Puedes añadir 'else if' para 'enojo', 'calma', etc. aquí)
+
+    emocionActual = ""; // Limpiamos la variable
+    mostrarPantalla('mapa');
     });
 
     // Volver al mapa desde escenario (sin desbloquear)
